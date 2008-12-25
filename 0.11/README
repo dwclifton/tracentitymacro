@@ -1,0 +1,57 @@
+= !EntityMacro =
+
+== Description ==
+
+The !EntityMacro package returns HTML 4.01 numeric character entity references
+from their corresponding names.
+
+The character entity data is straight out of the DTD for HTML 4.01 so if there
+are errors or ommissions you can blame it on the W3C, not me. ;-)
+
+See: [http://www.w3.org/TR/1999/REC-html401-19991224/sgml/entities.html Character entity references in HTML 4]
+
+for more information.
+
+Calling the macro like so: `[[Entity(name)]]`, it returns the value. If no name
+matches, it returns an empty string. Names are case-sensitive, in other words,
+`aacute` is not the same code point as `Aacute`. Keyword syntax is also supported:
+`[[Entity(name=name)]]`.
+
+The macro is useful in any [WikiFormatting wiki formatted] page.
+
+== Installation ==
+
+{{{
+python setup.py bdist_egg
+cp dist/*.egg /trac/env/Project/plugins
+}}}
+
+== Configuration ==
+
+Enable the macro in:
+
+/trac/env/Project/conf/trac.ini:
+
+{{{
+[components]
+entity.* = enabled
+}}}
+
+You may have to restart you Web server.
+
+== Examples ==
+
+{{{
+[[Entity(raquo)]]
+[[Entity(name=raquo)]]
+}}}
+
+Both of these examples will return `&#187;`.
+
+== Source ==
+
+ * Browse the source at: [http://github.com/dwclifton/tracentitymacro/tree/master GitHub].
+ * Public clone URL:
+{{{
+git clone git://github.com/dwclifton/tracentitymacro.git
+}}}
